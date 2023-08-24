@@ -1,4 +1,3 @@
-// server.js (entry point)
 
 const express = require('express');
 const {connection} =require("./db")
@@ -11,8 +10,10 @@ app.use(cors());
 app.use(express.json());
 
 
+app.get("/",(req,res)=>{
+    res.send("welcome to Blogpage")
+})
 
-// const userRoutes = require('./routes/user.routes');
 
 const { userRoutes } = require('./routes/user.routes');
 const { BlogRouter } = require('./routes/blog.routes');
