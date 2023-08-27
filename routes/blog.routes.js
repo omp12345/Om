@@ -1,6 +1,6 @@
 const express = require('express');
 const BlogRouter = express.Router();
-const jwt = require('jsonwebtoken');
+// const jwt = require('jsonwebtoken');
 const Blog = require('../models/blog.model');
 const User = require('../models/user.model');
 const { authenticateUser } = require('../middlewares/auth.middleware');
@@ -8,7 +8,7 @@ const { authenticateUser } = require('../middlewares/auth.middleware');
 
 
 
-BlogRouter.get('/blogs', authenticateUser, async (req, res) => {
+BlogRouter.get('/blogs', async (req, res) => {
   try {
     const blogs = await Blog.find();
     res.status(200).json(blogs);
@@ -46,11 +46,11 @@ BlogRouter.put('/blogs/:id', authenticateUser, async (req, res) => {
       { new: true }
     );
     if (!updatedBlog) {
-      return res.status(404).json({ message: 'Blog not found' });
+      return res.status(404).json({ message: 'Blog doest, found' });
     }
-    res.status(200).json({ message: 'Blog updated successfully', blog: updatedBlog });
+    res.status(200).json({ message: 'Blog  successfully updated', blog: updatedBlog });
   } catch (error) {
-    res.status(500).json({ message: 'Failed to update blog' });
+    res.status(500).json({ message: ' update blog Failed ' });
   }
 });
 
@@ -60,7 +60,7 @@ BlogRouter.delete('/blogs/:id', authenticateUser, async (req, res) => {
     const { id } = req.params;
     const deletedBlog = await Blog.findByIdAndDelete(id);
     if (!deletedBlog) {
-      return res.status(404).json({ message: 'Blog not found' });
+      return res.status(404).json({ message: ' not found' });
     }
     res.status(200).json({ message: 'Blog deleted successfully' });
   } catch (error) {
