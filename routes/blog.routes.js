@@ -29,7 +29,7 @@ BlogRouter.post('/blogs', authenticateUser, async (req, res) => {
       category,
     });
     await newBlog.save();
-    res.status(201).json({ message: 'Blog created successfully' });
+    res.status(201).json({ message: 'Blog created successfully' ,data:req.body});
   } catch (error) {
     res.status(500).json({ message: 'Failed to create blog' });
   }
